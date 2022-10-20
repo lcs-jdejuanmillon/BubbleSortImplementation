@@ -7,6 +7,13 @@
 
 import Foundation
 
+func waitForUserInput() {
+    print("")
+    print("Press return to continue...")
+    // Waits for input from the user, then discards it
+    var _ = readLine()
+}
+
 // Create an empty list (array)
 var dataSet: [Int] = []
 
@@ -16,4 +23,6 @@ for _ in 1...10 {
 }
 
 // Print the list
-print(dump(dataSet))
+print("Unsorted:")
+print(dataSet)
+waitForUserInput()
