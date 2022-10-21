@@ -30,14 +30,14 @@ waitForUserInput()
 // Loop through the entire array "n" times
 // (however many times there are elements in the array)
 for i in 0..<dataSet.count {
-   
+    var hasSwapped = false
     // One pass through the array to float the highest number to the end
     for j in 0..<dataSet.count - i - 1 {
         
         // Compare left value to right value
         print("Comparison \(j + 1)... ", terminator: "")
         if dataSet[j] > dataSet[j + 1] {
-            
+            hasSwapped = true
             // Swap values (when left value is more than right value)
             let temporaryValue = dataSet[j] // Set aside the left value
             dataSet[j] = dataSet[j + 1]
@@ -53,6 +53,8 @@ for i in 0..<dataSet.count {
     print("Array after pass \(i + 1):")
     print(dataSet)
     waitForUserInput()
-    
+    if !hasSwapped {
+        break
+    }
 }
 
