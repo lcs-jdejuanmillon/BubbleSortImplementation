@@ -27,6 +27,11 @@ print("Unsorted:")
 print(dataSet)
 waitForUserInput()
 
+// Keep track of the start time (epoch)
+// When this line of code runs, startTime contains the number of seconds since January 1, 1970
+let startTime = Date().timeIntervalSince1970
+print("Starting sort...")
+
 // Loop through the entire array "n" times
 // (however many times there are elements in the array)
 for i in 0..<dataSet.count {
@@ -66,4 +71,12 @@ for i in 0..<dataSet.count {
     waitForUserInput()
     
 }
+
+// Get end time (seconds since epoch)
+let endTime = Date().timeIntervalSince1970
+print("ended.")
+
+// Get the elapsed time
+let elapsedTime = endTime - startTime
+print("Sort took \(elapsedTime) seconds.")
 
