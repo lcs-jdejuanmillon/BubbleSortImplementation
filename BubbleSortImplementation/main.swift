@@ -32,7 +32,7 @@ waitForUserInput()
 for i in 0..<dataSet.count {
    
     // One pass through the array to float the highest number to the end
-    for j in 0..<dataSet.count - 1 {
+    for j in 0..<dataSet.count - i - 1 {
         
         // Compare left value to right value
         print("Comparison \(j + 1)... ", terminator: "")
