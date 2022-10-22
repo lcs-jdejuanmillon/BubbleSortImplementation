@@ -3,7 +3,6 @@
 //  BubbleSortImplementation
 //
 //  Created by Jacobo de Juan Millon on 2022-10-20.
-//
 
 import Foundation
 
@@ -26,13 +25,26 @@ func populateReversed(size: Int) {
     }
 }
 
+func populateRandomized(size: Int, min: Int, max: Int) {
+    for _ in 1...size {
+        dataSet.append(Int.random(in: min...max))
+    }
+}
+
+func populateAlmostSorted(size: Int, passesRequired: Int) {
+    for i in 1..<size - passesRequired {
+        dataSet.append(i)
+    }
+    for i in 0...passesRequired {
+        dataSet.append(size - i)
+    }
+}
+
 // Create an empty list (array)
 var dataSet: [Int] = []
 
 // Populate the list
-for _ in 1...10 {
-    dataSet.append(Int.random(in: 1...100))
-}
+populateSorted(size: 10)
 
 // Print the list
 print("Unsorted:")
