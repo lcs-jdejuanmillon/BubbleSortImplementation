@@ -14,6 +14,18 @@ func waitForUserInput() {
     var _ = readLine()
 }
 
+func populateSorted(size: Int) {
+    for i in 1...size {
+        dataSet.append(i)
+    }
+}
+
+func populateReversed(size: Int) {
+    for i in 1...size {
+        dataSet.append(size - i)
+    }
+}
+
 // Create an empty list (array)
 var dataSet: [Int] = []
 
