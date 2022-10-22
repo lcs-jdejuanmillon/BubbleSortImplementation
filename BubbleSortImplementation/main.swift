@@ -10,7 +10,7 @@ func waitForUserInput() {
     print("")
     print("Press return to continue...")
     // Waits for input from the user, then discards it
-    var _ = readLine()
+//    var _ = readLine()
 }
 
 func populateSorted(size: Int) {
@@ -43,64 +43,88 @@ func populateAlmostSorted(size: Int, passesRequired: Int) {
 // Create an empty list (array)
 var dataSet: [Int] = []
 
-// Populate the list
-populateSorted(size: 10)
+var numberOfTrials = 0
+var totalTime = 0.0
+print("Input the number of trials:")
 
-// Print the list
-print("Unsorted:")
-print(dataSet)
-waitForUserInput()
-
-// Keep track of the start time (epoch)
-// When this line of code runs, startTime contains the number of seconds since January 1, 1970
-let startTime = Date().timeIntervalSince1970
-print("Starting sort...")
-
-// Loop through the entire array "n" times
-// (however many times there are elements in the array)
-for i in 0..<dataSet.count {
-    
-    // Keep track of whether a pair of numbers was swapped
-    var swapped = false
-    
-    // One pass through the array to float the highest number to the end
-    for j in 0..<dataSet.count - i - 1 {
-        
-        // Compare left value to right value
-        print("Comparison \(j + 1)... ", terminator: "")
-        if dataSet[j] > dataSet[j + 1] {
-            
-            // Swap values (when left value is more than right value)
-            let temporaryValue = dataSet[j] // Set aside the left value
-            dataSet[j] = dataSet[j + 1] // Replace left with right
-            dataSet[j + 1] = temporaryValue // Replace right with the temporary value
-            print(" values were swapped.", terminator: "")
-            
-            // Note that a swap occured
-            swapped = true
-            
-        }
-        print("")
-        
-    }
-    
-    // When no swaps occured, stop the outer loop
-    if !swapped {
+let s = readLine()
+while numberOfTrials == 0 {
+    if let input = Int(s!) {
+        numberOfTrials = input
+        print("Number of trials: \(numberOfTrials)")
         break
+    } else {
+        print("Please input a positive integer:")
     }
+}
+
+for k in 1...numberOfTrials {
+    // Populate the list
+    populateSorted(size: 10)
     
-    // Print the array after the pass
-    print("Array after pass \(i + 1):")
+    // Print the list
+    print("Unsorted:")
     print(dataSet)
     waitForUserInput()
     
+    // Keep track of the start time (epoch)
+    // When this line of code runs, startTime contains the number of seconds since January 1, 1970
+    let startTime = Date().timeIntervalSince1970
+    print("Starting sort...")
+    
+    // Loop through the entire array "n" times
+    // (however many times there are elements in the array)
+    for i in 0..<dataSet.count {
+        
+        // Keep track of whether a pair of numbers was swapped
+        var swapped = false
+        
+        // One pass through the array to float the highest number to the end
+        for j in 0..<dataSet.count - i - 1 {
+            
+            // Compare left value to right value
+            print("Comparison \(j + 1)... ", terminator: "")
+            if dataSet[j] > dataSet[j + 1] {
+                
+                // Swap values (when left value is more than right value)
+                let temporaryValue = dataSet[j] // Set aside the left value
+                dataSet[j] = dataSet[j + 1] // Replace left with right
+                dataSet[j + 1] = temporaryValue // Replace right with the temporary value
+                print(" values were swapped.", terminator: "")
+                
+                // Note that a swap occured
+                swapped = true
+                
+            }
+            print("")
+            
+        }
+        
+        // When no swaps occured, stop the outer loop
+        if !swapped {
+            break
+        }
+        
+        // Print the array after the pass
+        print("Array after pass \(i + 1):")
+        print(dataSet)
+        waitForUserInput()
+        
+    }
+    
+    // Get end time (seconds since epoch)
+    let endTime = Date().timeIntervalSince1970
+    print("ended.")
+    
+    // Get the elapsed time
+    let elapsedTime = endTime - startTime
+    totalTime += elapsedTime
+    print("Sort \(k) took \(elapsedTime) seconds.")
+    print("")
+    print("")
+    print("")
+    dataSet.removeAll()
+    
 }
 
-// Get end time (seconds since epoch)
-let endTime = Date().timeIntervalSince1970
-print("ended.")
-
-// Get the elapsed time
-let elapsedTime = endTime - startTime
-print("Sort took \(elapsedTime) seconds.")
-
+print("The average time was \(totalTime / Double(numberOfTrials))")
